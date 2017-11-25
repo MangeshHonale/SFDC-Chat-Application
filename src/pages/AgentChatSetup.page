@@ -1,0 +1,294 @@
+<apex:page controller="AgentChatSetupController" applyHtmlTag="true" applyBodyTag="false" docType="html-5.0">
+<apex:stylesheet value="{!URLFOR($Resource.SLDS203, 'assets/styles/salesforce-lightning-design-system-ltng.css')}" />
+ <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+<apex:form >
+<!-----This is to try source control------->
+<apex:pageMessages id="messages"/>
+<div class="saltpay">
+
+<article class="slds-card">
+
+<article class="slds-card">
+ 
+  <div class="slds-card__body slds-m-around--large">
+  Website visitors will connect to Agents via the app using this connection setup. Provide a Salesforce User and connected app credentials to complete the connection setup. Click <a href="https://help.salesforce.com/apex/HTViewHelpDoc?id=connected_app_create.htm">here</a> to learn about connected apps.
+  </div>
+
+</article>
+
+  <div class="slds-card__header slds-grid">
+    <header class="slds-media slds-media--center slds-has-flexi-truncate">
+      <div class="slds-media__figure">
+        <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--large">
+           <use xlink:href="{!URLFOR($Resource.SLDS203,'/assets/icons/standard-sprite/svg/symbols.svg#environment_hub')}"></use>
+        </svg>
+      </div>
+      <div class="slds-media__body slds-truncate">
+            <div class="slds-media__body slds-truncate slds-text-align--left">
+                                <p class="slds-text-heading--label">Salesforce Connection Setup</p>
+
+                            </div>
+      </div>
+    </header>
+   
+  </div>
+  <div class="slds-card__body slds-text-align--center">
+   <fieldset class="slds-form--compound" >
+
+  <div class="form-element__group">
+    <div class="slds-form-element__row">
+     <div class="slds-size--6-of-12">
+  <article class="slds-card" id="information">
+   <header class="slds-card__header slds-grid">
+                        <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--medium">
+                                    <use xlink:href="{!URLFOR($Resource.SLDS203,'/assets/icons/standard-sprite/svg/symbols.svg#user')}"></use>
+                                </svg>
+                            </div>
+                         <div class="slds-media__body slds-truncate slds-text-align--left">
+                                <p class="slds-text-heading--label">Salesforce User Credentials</p>
+
+                            </div>
+                        </div>
+                   
+                    </header>
+  <div class="slds-card__body slds-text-align--left">
+ <fieldset class="slds-form--compound slds-m-left--medium slds-m-right--medium" >
+
+  <div class="form-element__group">
+    <div class="slds-form-element__row">
+      <div class="slds-form-element slds-size--4-of-12">
+        <label class="slds-form-element__label" for="input-01"> <abbr class="slds-required" title="required">*</abbr>Username</label>
+        <apex:inputText value="{!setup.Salesforce_Username__c}" styleClass="slds-input"/>
+      </div>
+
+    </div>
+    
+    <div class="slds-form-element__row">
+      <div class="slds-form-element slds-size--4-of-12">
+        <label class="slds-form-element__label" for="input-01"> <abbr class="slds-required" title="required">*</abbr>Password + Security Token</label>
+        <apex:InputSecret value="{!setup.Salesforce_Password__c}" styleClass="slds-input" redisplay="true"/>
+      </div>
+
+    </div>
+    
+     <!-- <div class="slds-form-element__row">
+      <div class="slds-form-element slds-size--4-of-12">
+        <label class="slds-form-element__label" for="input-01"> <abbr class="slds-required" title="required">*</abbr>Security Token</label>
+        <apex:InputSecret value="{!setup.Salesforce_Security_Token__c}" styleClass="slds-input" required="true"/>
+      </div>
+
+    </div>-->
+  </div>
+</fieldset>
+
+
+
+
+</div>
+ 
+</article>
+  </div>
+     <div class="slds-size--6-of-12">
+  <article class="slds-card" id="information">
+   <header class="slds-card__header slds-grid">
+                        <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--medium">
+                                    <use xlink:href="{!URLFOR($Resource.SLDS203,'/assets/icons/standard-sprite/svg/symbols.svg#connected_apps')}"></use>
+                                </svg>
+                            </div>
+                         <div class="slds-media__body slds-truncate slds-text-align--left">
+                                <p class="slds-text-heading--label">Connected App Credentials</p>
+
+                            </div>
+                        </div>
+                   
+                    </header>
+  <div class="slds-card__body slds-text-align--left">
+ <fieldset class="slds-form--compound slds-m-left--medium slds-m-right--medium" >
+
+  <div class="form-element__group">
+    <div class="slds-form-element__row">
+      <div class="slds-form-element slds-size--4-of-12">
+        <label class="slds-form-element__label" for="input-01"> <abbr class="slds-required" title="required">*</abbr>Client Id</label>
+        <apex:inputText value="{!setup.Client_Id__c}" styleClass="slds-input"/>
+      </div>
+
+    </div>
+    
+    <div class="slds-form-element__row">
+      <div class="slds-form-element slds-size--4-of-12">
+        <label class="slds-form-element__label" for="input-01"> <abbr class="slds-required" title="required">*</abbr>Client Secret</label>
+        <apex:InputSecret value="{!setup.Client_Secret__c}" styleClass="slds-input" redisplay="true" />
+      </div>
+
+    </div>
+    
+     
+  </div>
+</fieldset>
+
+
+
+
+</div>
+ 
+</article>
+  </div>
+    </div>
+  
+  
+  </div>
+  </fieldset>
+</div>
+<div class="slds-align--absolute-center">
+<apex:commandButton value="Test Connection" action="{!testConnection}" styleClass="slds-button slds-button--brand  slds-m-bottom--medium" reRender="messages" status="actStatusId"/>
+</div>
+</article>
+
+<div class="slds-grid">
+ <div class="slds-size--6-of-12">
+ 
+  <article class="slds-card" id="information">
+<article class="slds-card">
+ 
+  <div class="slds-card__body slds-m-around--large slds-m-bottom--x-small">
+  An email notification containing link to serve new chat request is sent to assigned agent. Control the notifications from this settings.
+  </div>
+
+</article>
+   <header class="slds-card__header slds-grid">
+                        <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--medium">
+                                    <use xlink:href="{!URLFOR($Resource.SLDS203,'/assets/icons/standard-sprite/svg/symbols.svg#email')}"></use>
+                                </svg>
+                            </div>
+                         <div class="slds-media__body slds-truncate slds-text-align--left">
+                                <p class="slds-text-heading--label">Email Notifications</p>
+
+                            </div>
+                        </div>
+                   
+                    </header>
+  <div class="slds-card__body slds-text-align--left">
+ <fieldset class="slds-form--compound slds-m-left--medium slds-m-right--medium slds-m-bottom--small" >
+
+  <div class="form-element__group">
+    <div class="slds-form-element__row">
+      <div class="slds-form-element slds-size--4-of-12">
+        <div class="slds-form-element slds-m-left--x-small">
+          <label class="slds-checkbox">
+                <apex:inputcheckbox styleclass="slds-input" value="{!setup.Email_Notification__c}" />
+                   <span class="slds-checkbox--faux"></span>
+                   <span class="slds-form-element__label">Send Notification</span>
+          </label>
+       </div>
+      </div>
+
+    </div>
+    
+    
+    
+   
+  </div>
+</fieldset>
+
+
+
+
+</div>
+ 
+</article>
+  </div>
+
+<div class="slds-size--6-of-12 ">
+  <article class="slds-card" id="information">
+  <article class="slds-card">
+ 
+  <div class="slds-card__body slds-m-around--large">
+     The chat request is routed to substitute user if no agent related to a skill is available to address the request. Select the substitute agent from this setting.
+  </div>
+
+</article>
+   <header class="slds-card__header slds-grid">
+                        <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--medium">
+                                    <use xlink:href="{!URLFOR($Resource.SLDS203,'/assets/icons/standard-sprite/svg/symbols.svg#user')}"></use>
+                                </svg>
+                            </div>
+                         <div class="slds-media__body slds-truncate slds-text-align--left">
+                                <p class="slds-text-heading--label">Substitute User</p>
+
+                            </div>
+                        </div>
+                   
+                    </header>
+  <div class="slds-card__body slds-text-align--left">
+ <fieldset class="slds-form--compound slds-m-left--medium slds-m-right--medium" >
+
+  <div class="form-element__group">
+    <div class="slds-form-element__row">
+      <div class="slds-form-element slds-size--4-of-12">
+        <div class="slds-form-element">
+          <apex:selectList value="{!setup.Subtitute_Agent__c}" size="1" styleClass="slds-select">
+      <apex:selectOptions value="{!UsersList}">
+      </apex:selectOptions>
+      </apex:selectList>
+       </div>
+      </div>
+
+    </div>
+    
+    
+    
+   
+  </div>
+</fieldset>
+
+
+
+
+</div>
+ 
+</article>
+  </div>
+
+</div>
+  
+   <article class="slds-card">
+ 
+  <div class="slds-card__body slds-m-around--small slds-align--absolute-center">
+    <div class="slds-button-group" role="group">
+  
+
+  <apex:commandButton value="Save" action="{!saveSetup}" styleClass="slds-button slds-button--neutral" reRender="messages" status="actStatusId"/>
+
+
+                            <apex:commandButton value="Cancel" action="{!cancel}" styleClass="slds-button slds-button--neutral" />
+               
+</div>
+  </div>
+
+</article>
+
+ <apex:actionstatus id="actStatusId">
+                    <apex:facet name="start">
+                       <div class="slds-spinner_container">
+  <div class="slds-spinner--brand slds-spinner slds-spinner--medium" role="alert">
+    <span class="slds-assistive-text">Loading</span>
+    <div class="slds-spinner__dot-a"></div>
+    <div class="slds-spinner__dot-b"></div>
+  </div>
+</div>
+                    </apex:facet>
+                  </apex:actionstatus>
+</div>
+ 
+</apex:form>
+
+</html>
+</apex:page>

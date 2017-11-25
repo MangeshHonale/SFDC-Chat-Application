@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Agent Chat set up configuration management.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Client_Id__c</fullName>
+        <description>Connected app client id.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Connected app client id.</inlineHelpText>
+        <label>Client Id</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Client_Secret__c</fullName>
+        <description>Connected app client secret.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Connected app client secret.</inlineHelpText>
+        <label>Client Secret</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email_Notification__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Notify Salesforce agent about new chat request by email.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Notify Salesforce agent about new chat request by email.</inlineHelpText>
+        <label>Email Notification</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Salesforce_Password__c</fullName>
+        <description>Password for Salesforce account.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Password for Salesforce account.</inlineHelpText>
+        <label>Salesforce Password</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Salesforce_Username__c</fullName>
+        <description>Username for Salesforce account.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Username for Salesforce account.</inlineHelpText>
+        <label>Salesforce Username</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Subtitute_Agent__c</fullName>
+        <description>Substitute agent when an agent relevant to a skill is not available for chat.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Substitute agent when an agent relevant to a skill is not available for chat.</inlineHelpText>
+        <label>Subtitute Agent</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Agent Chat Setup</label>
+    <visibility>Public</visibility>
+</CustomObject>

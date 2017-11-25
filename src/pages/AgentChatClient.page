@@ -1,0 +1,96 @@
+<apex:page controller="AgentChatClientController" >
+<apex:includeScript value="{!$Resource.json2_js}"/>
+<apex:includeScript value="{!URLFOR($Resource.cometd, '/dojo/dojo.js')}"/>
+<apex:includeScript value="{!$Resource.AgentClient_js}"/>
+<apex:stylesheet value="{!URLFOR($Resource.SLDS203, 'assets/styles/salesforce-lightning-design-system-ltng.css')}" />
+<script>
+    var token = '{!$Api.Session_ID}';
+    var id = '{!chatConv.Id}';
+    
+    function handleEnterKey(e){
+                      
+        if(window.event){                    
+            key = window.event.keyCode;     //IE               
+        } 
+        else{                    
+            key = e.which;     //firefox               
+        }               
+        if(key == 13) {                    
+                                
+            return false;               
+        } else{                    
+            return true;               
+        }          
+      
+    }
+
+</script>
+    
+<apex:form styleClass="saltpay">
+
+
+
+
+
+<div class="slds-docked_container">
+  <div role="dialog" aria-labelledby="dialog-heading-id" class="slds-docked-composer slds-grid slds-grid--vertical slds-nowrap slds-is-open">
+    <header class="slds-docked-composer__header slds-grid slds-grid--align-spread slds-shrink-none">
+      <div class="slds-media slds-media--center">
+        <div class="slds-media__figure" >
+          <span class="slds-icon_container slds-icon-standard-call" id="ustatus">
+            <svg aria-hidden="true" class="slds-icon slds-icon--small">
+              <use href="/assets/icons/standard-sprite/svg/symbols.svg#call"></use>
+            </svg>
+            <span class="slds-assistive-text">Call Icon</span>
+          </span>
+        </div>
+        <div class="slds-media__body">
+          <h2 id="dialog-heading-id"></h2>
+        </div>
+      </div>
+      <div class="slds-docked-composer__actions">
+        <button class="slds-button slds-button--icon-bare slds-button--icon-inverse">
+          <svg aria-hidden="true" class="slds-button__icon">
+            <use href="/assets/icons/utility-sprite/svg/symbols.svg#minimize_window"></use>
+          </svg>
+          <span class="slds-assistive-text">Minimize window</span>
+        </button>
+        <button class="slds-button slds-button--icon-bare slds-button--icon-inverse">
+          <svg aria-hidden="true" class="slds-button__icon">
+            <use href="/assets/icons/utility-sprite/svg/symbols.svg#expand_alt"></use>
+          </svg>
+          <span class="slds-assistive-text">Expand Composer</span>
+        </button>
+        <button class="slds-button slds-button--icon-bare slds-button--icon-inverse">
+          <svg aria-hidden="true" class="slds-button__icon">
+            <use href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+          </svg>
+          <span class="slds-assistive-text">Close</span>
+        </button>
+      </div>
+    </header>
+<div class="slds-docked-composer__body slds-col slds-grid slds-grid--vertical slds-nowrap slds-size--1-of-1" ><div  class="slds-scrollable--y" id="datastream">
+</div>
+</div>
+    <footer class="slds-docked-composer__footer slds-shrink-none">
+    
+    <div class="slds-form-element slds-size--8-of-12">
+  
+  <div class="slds-form-element__control">
+
+    <apex:inputtext value="{!chatConv.Message__c}" styleClass="slds-input" html-placeholder="Write a message and click Send..."/>
+  </div>
+</div>
+
+      <div class="slds-float--right slds-grid slds-grid--align-end slds-size--4-of-12 slds-text-align--right" style="margin-top: -33px;">
+        <apex:commandButton value="Send" action="{!sendMessage}" styleClass="slds-button slds-button--brand" reRender="false" />
+        
+      </div>
+     
+    </footer>
+  </div>
+</div>
+
+
+</apex:form>
+</apex:page>

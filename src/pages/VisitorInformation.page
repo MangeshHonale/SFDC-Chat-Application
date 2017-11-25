@@ -1,0 +1,168 @@
+<apex:page controller="VisitorChatClientController" sidebar="false" showHeader="false">
+
+ <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+<apex:stylesheet value="{!URLFOR($Resource.SLDS203, 'assets/styles/salesforce-lightning-design-system-ltng.css')}" />
+
+
+<apex:form rendered="{!IF(initiateChat == false, true, false)}">
+<div class="saltpay">
+
+<div class="slds-grid">
+ <div class="slds-size--6-of-12">
+
+<article class="slds-card">
+ <apex:pageMessages id="Messages"/>
+<header class="slds-card__header slds-grid">
+                        <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--medium">
+                                    <use xlink:href="{!URLFOR($Resource.SLDS203,'/assets/icons/standard-sprite/svg/symbols.svg#client')}"></use>
+                                </svg>
+                            </div>
+                         <div class="slds-media__body slds-truncate slds-text-align--left">
+                                <p class="slds-text-heading--label">Enter your information here</p>
+
+                            </div>
+                        </div>
+                   
+                    </header>
+                    
+                     <div class="slds-card__body slds-text-align--left">
+ <fieldset class="slds-form--compound slds-m-left--medium slds-m-right--medium" >
+
+  <div class="form-element__group">
+    <div class="slds-form-element__row ">
+      <div class="slds-form-element slds-size--6-of-12">
+        <label class="slds-form-element__label" for="input-01"> <abbr class="slds-required" title="required">*</abbr>First Name</label>
+        <apex:inputText value="{!visitor.firstName}" styleClass="slds-input"/>
+      </div>
+
+    
+      <div class="slds-form-element slds-size--6-of-12">
+        <label class="slds-form-element__label" for="input-01"> <abbr class="slds-required" title="required">*</abbr>Last Name</label>
+        <apex:InputText value="{!visitor.lastName}" styleClass="slds-input"/>
+      </div>
+
+    </div>
+    
+     <div class="slds-form-element__row ">
+      <div class="slds-form-element slds-size--6-of-12">
+        <label class="slds-form-element__label" for="input-01"> <abbr class="slds-required" title="required">*</abbr>Email</label>
+        <apex:inputText value="{!visitor.email}" styleClass="slds-input"/>
+      </div>
+
+    
+      <div class="slds-form-element slds-size--6-of-12">
+        <label class="slds-form-element__label" for="input-01"> <abbr class="slds-required" title="required">*</abbr>Company Name</label>
+        <apex:InputText value="{!visitor.companyName}" styleClass="slds-input"/>
+      </div>
+
+    </div>
+    
+     
+     <div class="slds-form-element__row ">
+     
+
+    
+      <div class="slds-form-element slds-size--6-of-12">
+        <label class="slds-form-element__label" for="input-01"> <abbr class="slds-required" title="required">*</abbr>What do you want to discuss about?</label>
+        <apex:selectList value="{!userSkill}" size="1" styleClass="slds-select">
+             <apex:selectOptions value="{!Skills}"/>
+        </apex:selectList>
+      </div>
+
+    </div>
+    
+
+  </div>
+</fieldset>
+
+<div class="slds-align--absolute-center">
+<apex:commandButton value="Initiate Chat"  action="{!initiateChat}"  id="chatButton" styleClass="slds-button slds-button--brand" reRender="Messages, ChatWindow, script"/>
+</div>
+</div>
+</article>
+</div>
+</div>
+</div>
+    
+
+
+
+
+</apex:form>
+<apex:outputPanel id="ChatWindow">
+<apex:form styleClass="saltpay"  rendered="{!IF(initiateChat == true, true, false)}">
+
+<div class="slds-docked_container">
+  <div role="dialog" aria-labelledby="dialog-heading-id" class="slds-docked-composer slds-grid slds-grid--vertical slds-nowrap slds-is-open">
+    <header class="slds-docked-composer__header slds-grid slds-grid--align-spread slds-shrink-none">
+      <div class="slds-media slds-media--center">
+       <div class="slds-media__figure">
+          <span class="slds-icon_container slds-icon-standard-call">
+            <svg aria-hidden="true" class="slds-icon slds-icon--small">
+              <use xlink:href="{!URLFOR($Resource.SLDS203, '/assets/icons/standard-sprite/svg/symbols.svg#avatar')}"></use>
+            </svg>
+
+          </span>
+        </div>
+        <div class="slds-media__body">
+          <h2 id="dialog-heading-id">{!sfdcAgent.Name}</h2>
+        </div>
+      </div>
+      
+      <!-- Not sure if these buttons are needed right now 
+      <div class="slds-docked-composer__actions">
+        <button class="slds-button slds-button--icon-bare slds-button--icon-inverse">
+          <svg aria-hidden="true" class="slds-button__icon">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#minimize_window"></use>
+          </svg>
+          <span class="slds-assistive-text">Minimize window</span>
+        </button>
+        <button class="slds-button slds-button--icon-bare slds-button--icon-inverse">
+          <svg aria-hidden="true" class="slds-button__icon">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#expand_alt"></use>
+          </svg>
+          <span class="slds-assistive-text">Expand Composer</span>
+        </button>
+        <button class="slds-button slds-button--icon-bare slds-button--icon-inverse">
+          <svg aria-hidden="true" class="slds-button__icon">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+          </svg>
+          <span class="slds-assistive-text">Close</span>
+        </button>
+      </div> -->
+    </header> 
+    
+    <div class="slds-docked-composer__body slds-col slds-grid slds-grid--vertical slds-nowrap slds-size--1-of-1"><div class="slds-scrollable--y" id="datastream"></div></div>
+    <apex:outputPanel id="err" >
+    <apex:outputPanel rendered="{!msgDeliveryfail}">
+     <span class="slds-pill slds-align--absolute-center">{!errorMsg}
+ 
+</span>
+</apex:outputPanel>
+</apex:outputPanel>
+    <footer class="slds-docked-composer__footer slds-shrink-none">
+   
+    <div class="slds-form-element slds-size--8-of-12">
+  
+  <div class="slds-form-element__control">
+    
+    <apex:inputtext value="{!chatConv.Message__c}" styleClass="slds-input" html-placeholder="Write a message and click Send"  id="msgbox"/>
+
+  </div>
+</div>
+      <div class="slds-float--right slds-grid slds-grid--align-end slds-size--4-of-12 slds-text-align--right" style="    margin-top: -33px;">
+        <apex:commandButton value="Send" action="{!sendMessage}" styleClass="slds-button slds-button--brand" reRender="msgbox, err" />
+        
+      </div>
+     
+    </footer>
+  </div>
+</div>
+
+
+</apex:form>
+</apex:outputPanel>
+</html>
+</apex:page>
